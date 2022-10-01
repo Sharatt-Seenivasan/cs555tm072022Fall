@@ -9,63 +9,40 @@ from datetime import date
 
 class UserStoryOneTestMethods(unittest.TestCase):
 
-
-  def testHasBirthdayDateAfterCurrentDate(self):
-      count = 0
-      testData = "/content/datesBeforeCurrentDateTestData1.ged"
-      f = open(testData, "r")
-      lines = f.readlines()
-      index = 0
-      for line in lines:
-        if 'BIRT' in line.split():
-          date = datetime.strptime(lines[index+1].split('DATE')[1].replace('\n',''), " %d %b %Y")
-          if(isDateBeforeCurrentDate(date) == False):
-            count+=1
-        index+=1
-      self.assertEqual(count,1)
+  @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+  def testIndividualDeathDates(self, mock_stdout):
+    testData = "/content/datesBeforeCurrentDateTestData1.ged"
+    (individuals,individuals_id_and_name) = createIndDataframe(testData)
+    id_indices = getIDIndices(testData)
+    areIndividualDatesBeforeCurrentDate(individuals,id_indices)
+    self.assertTrue("ERROR: INDIVIDUAL: US01: 31: I3 Death 8 AUG 3000 occurs in the future" in mock_stdout.getvalue())
 
 
-  def testHasDeathDateAfterCurrentDate(self):
-      count = 0
-      testData = "/content/datesBeforeCurrentDateTestData1.ged"
-      f = open(testData, "r")
-      lines = f.readlines()
-      index = 0
-      for line in lines:
-        if 'DEAT' in line.split():
-          date = datetime.strptime(lines[index+1].split('DATE')[1].replace('\n',''), " %d %b %Y")
-          if(isDateBeforeCurrentDate(date) == False):
-            count+=1
-        index+=1
-      self.assertEqual(count,1)
+  @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+  def testIndividualBirthdayDates(self, mock_stdout):
+    testData = "/content/datesBeforeCurrentDateTestData1.ged"
+    (individuals,individuals_id_and_name) = createIndDataframe(testData)
+    id_indices = getIDIndices(testData)
+    areIndividualDatesBeforeCurrentDate(individuals,id_indices)
+    self.assertTrue("ERROR: INDIVIDUAL: US01: 13: I1 Birthday 9 APR 2023 occurs in the future" in mock_stdout.getvalue())
 
-  def testHasMarriageDateAfterCurrentDate(self):
-      count = 0
-      testData = "/content/datesBeforeCurrentDateTestData1.ged"
-      f = open(testData, "r")
-      lines = f.readlines()
-      index = 0
-      for line in lines:
-        if 'MARR' in line.split():
-          date = datetime.strptime(lines[index+1].split('DATE')[1].replace('\n',''), " %d %b %Y")
-          if(isDateBeforeCurrentDate(date) == False):
-            count+=1
-        index+=1
-      self.assertEqual(count,1)
+  @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+  def testFamilyMarriageDates(self,mock_stdout):
+    testData = "/content/datesBeforeCurrentDateTestData1.ged"
+    (individuals,individuals_id_and_name) = createIndDataframe(testData)
+    families = createFamilyDataframe(testData,individuals_id_and_name)
+    family_indices = getFamilyIndices(testData)
+    areFamilyDatesBeforeCurrentDate(families,family_indices)
+    self.assertTrue("ERROR: FAMILY: US01:42: F1 Married 9 AUG 2030 occurs in the future" in mock_stdout.getvalue())
 
-  def testHasDivorceDateAfterCurrentDate(self):
-      count = 0
-      testData = "/content/datesBeforeCurrentDateTestData1.ged"
-      f = open(testData, "r")
-      lines = f.readlines()
-      index = 0
-      for line in lines:
-        if 'DIV' in line.split():
-          date = datetime.strptime(lines[index+1].split('DATE')[1].replace('\n',''), " %d %b %Y")
-          if(isDateBeforeCurrentDate(date) == False):
-            count+=1
-        index+=1
-      self.assertEqual(count,1)
+  @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+  def testFamilyDivorceDates(self,mock_stdout):
+    testData = "/content/datesBeforeCurrentDateTestData1.ged"
+    (individuals,individuals_id_and_name) = createIndDataframe(testData)
+    families = createFamilyDataframe(testData,individuals_id_and_name)
+    family_indices = getFamilyIndices(testData)
+    areFamilyDatesBeforeCurrentDate(families,family_indices)
+    self.assertTrue("ERROR: FAMILY: US01:42: F1 Divorce 9 MAY 2024 occurs in the future" in mock_stdout.getvalue())
 
   def testAllDatesBeforeCurrentDate(self):
       count = 0
