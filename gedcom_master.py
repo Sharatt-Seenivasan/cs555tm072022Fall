@@ -7,7 +7,7 @@ individuals = []
 individuals_id_and_name = []
 families = []
 #filename = 'INSERT FILENAME HERE'
-filename = 'testcases/uniqueIDs/uniqueIDsTestData1.ged'
+filename = 'testcases/uniqueIDs/uniqueIDsTestData5.ged'
 
 allowed_tags = {
     0 : ['INDI','FAM','HEAD','TRLR','NOTE'],
