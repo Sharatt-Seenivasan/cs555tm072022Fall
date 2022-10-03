@@ -9,12 +9,19 @@ def unique_families(filename):
     family_ids = families[['Husband ID', 'Wife ID']]
     check_duplicated = list(family_ids.duplicated())
 
+    return_string = ""
     for i in range(len(check_duplicated)):
         if (check_duplicated[i]):
-            print("Family ID", families.loc[i].at['id'], "is not a unique ID with a unique spouse.")
+            return_string += ("Family ID " + families.loc[i].at['id'] + " is not a unique ID with a unique spouse.")
+    if return_string != "":
+        print(return_string[:-1])
     
-    if (not any(check_duplicated)):
+    all_unique = not any(check_duplicated)
+    if all_unique:
         print("File has all unique families.")
 
+    return all_unique
+
 #filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
+#filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/uniqueFamilies/uniqueFamiliesTestData1.xlsx'
 #unique_families(filename)
