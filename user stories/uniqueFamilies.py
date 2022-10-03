@@ -1,11 +1,8 @@
+import os
 import pandas as pd
-from isDateBeforeCurrentDate import *
-
-filename = "test_data.ged"
 
 def unique_families(filename):
-    (individuals,individuals_id_and_name) = createIndDataframe(filename)
-    families = createFamilyDataframe(filename, individuals_id_and_name)
+    families = pd.read_excel(io=filename, sheet_name='Families')
     #temp = families.head(1)
     #families = pd.concat([families, temp], ignore_index = True)
     #families.iat[5,0] = 'F6'
@@ -14,6 +11,10 @@ def unique_families(filename):
 
     for i in range(len(check_duplicated)):
         if (check_duplicated[i]):
-            print("Family ID", families.loc[i].at['id'], "is not a unique ID with a unique spouse")
+            print("Family ID", families.loc[i].at['id'], "is not a unique ID with a unique spouse.")
+    
+    if (not all(check_duplicated)):
+        print("File has all unique families.")
 
-unique_families(filename)
+#filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
+#unique_families(filename)
