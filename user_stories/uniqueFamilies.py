@@ -16,6 +16,5 @@ def unique_families(filename):
     if (not all(check_duplicated)):
         print("File has all unique families.")
 
-#filename = os.path.abspath(os.path.dirname(__file__)) + '/../out.xlsx'
-filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/uniqueFamilies/uniqueFamiliesTestData1.xlsx'
-unique_families(filename)
+#filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
+#unique_families(filename)
