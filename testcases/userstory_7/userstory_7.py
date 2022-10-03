@@ -35,5 +35,5 @@ def unique_ids(filename):
     return all_unique
 
 #filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
-#filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/uniqueIDs/uniqueIDsTestData1.xlsx'
+#filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/userstory_7/uniqueIDsTestData1.xlsx'
 #unique_ids(filename)
