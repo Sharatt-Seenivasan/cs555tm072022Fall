@@ -8,7 +8,6 @@ def unique_families(filename):
     #families.iat[5,0] = 'F6'
     family_ids = families[['Husband ID', 'Wife ID']]
     check_duplicated = list(family_ids.duplicated())
-    print(check_duplicated)
 
     return_string = ""
     for i in range(len(check_duplicated)):
