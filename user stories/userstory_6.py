@@ -13,12 +13,15 @@ def greaterDate(first_date, second_date):
 
 def divorceBeforeDeath(individuals, families):
     for index, row in families.iterrows():
-        divorceDate = row['divorce']
+        divorceDate = row['divorced']
+
         husband_death = individuals.loc[individuals['id'] == row['Husband ID'], 'death'].iloc[0]
         wife_death = individuals.loc[individuals['id'] == row['Wife ID'], 'death'].iloc[0]
 
-        if greaterDate(husband_death, divorceDate) == False:
-            print("ERROR: Husband death date before divorce.")
+        if str(husband_death) != 'nan' and str(divorceDate) != 'nan':
+          if greaterDate(str(husband_death), str(divorceDate)) == False:
+              print("ERROR: Husband " + row['Husband ID'] + " death date before divorce.")
 
-        if greaterDate(wife_death, divorceDate) == False:
-            print("Error: Wife death date before divorce.")
+        if str(wife_death) != 'nan' and str(divorceDate) != 'nan':
+          if greaterDate(str(wife_death), str(divorceDate)) == False:
+              print("Error: Wife " + row['Wife ID'] + " death date before divorce.")
