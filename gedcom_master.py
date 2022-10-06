@@ -173,9 +173,13 @@ def save_family_data(filename, individuals_id_and_name):
 
     return families
 
-output_excel = filename.strip('.ged') + '.xlsx'
-with pd.ExcelWriter(output_excel) as writer:
-    (individuals,individuals_id_and_name) = save_ind_data(filename)
-    families = save_family_data(filename, individuals_id_and_name)
-    pd.DataFrame(individuals).to_excel(writer, sheet_name="Individuals")
-    pd.DataFrame(families).sort_values(by = ['id']).to_excel(writer, sheet_name="Families")
+def main():
+    output_excel = filename.strip('.ged') + '.xlsx'
+    with pd.ExcelWriter(output_excel) as writer:
+        (individuals,individuals_id_and_name) = save_ind_data(filename)
+        families = save_family_data(filename, individuals_id_and_name)
+        pd.DataFrame(individuals).to_excel(writer, sheet_name="Individuals")
+        pd.DataFrame(families).sort_values(by = ['id']).to_excel(writer, sheet_name="Families")
+
+if __main__ == "__main__":
+    main()

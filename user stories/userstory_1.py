@@ -8,9 +8,7 @@ from dateutil.relativedelta import relativedelta
 from datetime import date
 
 def isDateBeforeCurrentDate(event_date):
-  if date.today() > event_date.date():
-    return True
-  return False
+  return date.today() > event_date.date()
 
 def createIndDataframe(filename):
   individuals = []
@@ -78,9 +76,7 @@ def createIndDataframe(filename):
       today = date.today()
       person['age'] = relativedelta(today, datetime.strptime(person['birthday']," %d %b %Y")).years
 
-
     individuals.append(person)
-
       
   return (pd.DataFrame(individuals),individuals_id_and_name)
 
