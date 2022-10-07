@@ -2,7 +2,7 @@ import pandas as pd
 import parser
 import math
 
-def marriage_before_divorce(families_dataframe, family_id_indices):
+def marriage_before_divorce(families_dataframe):
     error_type = "US04 Marriage before divorce"
     df2 = families_dataframe
     for row in df2.itertuples(index=False):

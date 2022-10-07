@@ -2,7 +2,7 @@ import pandas as pd
 import parser
 import math
 
-def birth_before_death(individuals_dataframe, id_indices):
+def birth_before_death(individuals_dataframe):
     df = individuals_dataframe
     for row in df.itertuples(index=False):
         if not type(row.death) == float or not math.isnan(row.death):

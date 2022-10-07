@@ -17,12 +17,8 @@ def check_id(id_list):
 
     return len(diff_list) == 0
 
-def unique_ids(filename):
-    #(individuals,individuals_id_and_name) = createIndDataframe(filename)
-    #families = createFamilyDataframe(filename, individuals_id_and_name)
-    individuals = pd.read_excel(io=filename, sheet_name='Individuals')
+def unique_ids(individuals, families):
     individual_id_list = sorted(list(individuals['id']))
-    families = pd.read_excel(io=filename, sheet_name='Families')
     family_id_list = sorted(list(families['id']))
 
     has_unique_individuals = check_id(individual_id_list)
@@ -33,6 +29,7 @@ def unique_ids(filename):
         print("File has all unique IDs.")
     
     return all_unique
+
 
 #filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
 #filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/userstory_7/uniqueIDsTestData1.xlsx'
