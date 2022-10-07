@@ -2,6 +2,8 @@ import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import date
+import user_stories.userstory_7
+import user_stories.userstory_8
 
 individuals = []
 individuals_id_and_name = []
@@ -173,13 +175,28 @@ def save_family_data(filename, individuals_id_and_name):
 
     return families
 
-def main():
+def file_parser(filename):
+    (individuals, individuals_id_and_name) = save_ind_data(filename)
+    families = save_family_data(filename, individuals_id_and_name)
+    individuals = pd.DataFrame(individuals)
+    families = pd.DataFrame(families)
+    return (individuals, families)
+
+def userstories_sprint1(individuals, families):
+    has_unique_ids = user_stories.userstory_7.unique_ids(individuals, families)
+    has_unique_families = user_stories.userstory_8.unique_families(families)
+    return has_unique_ids and has_unique_families
+
+def output_data(individuals, families):
     output_excel = filename.strip('.ged') + '.xlsx'
     with pd.ExcelWriter(output_excel) as writer:
-        (individuals,individuals_id_and_name) = save_ind_data(filename)
-        families = save_family_data(filename, individuals_id_and_name)
-        pd.DataFrame(individuals).to_excel(writer, sheet_name="Individuals")
-        pd.DataFrame(families).sort_values(by = ['id']).to_excel(writer, sheet_name="Families")
+        individuals.to_excel(writer, sheet_name="Individuals")
+        families.sort_values(by = ['id']).to_excel(writer, sheet_name="Families")
 
-if __main__ == "__main__":
+def main():
+    (individuals, families) = file_parser(filename)
+    userstories_sprint1(individuals, families)
+    output_data(individuals, families)
+
+if __name__ == "__main__":
     main()

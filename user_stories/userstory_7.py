@@ -27,7 +27,7 @@ def unique_ids(individuals, families):
 
     if all_unique:
         print("File has all unique IDs.")
-    
+
     return all_unique
 
 
