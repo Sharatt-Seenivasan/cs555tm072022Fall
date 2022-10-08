@@ -2,7 +2,8 @@ import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import date
-from user_stories import userstory_7, userstory_8, userstory_15
+from user_stories import userstory_7, userstory_8
+from user_stories import userstory_15, userstory_16
 
 individuals = []
 individuals_id_and_name = []
@@ -188,6 +189,8 @@ def userstories_sprint1(individuals, families):
 
 def userstories_sprint2(individuals, families):
     all_legal_marriage = userstory_15.marriage_after_14(individuals, families)
+    has_no_sibling_marriage = userstory_16.no_sibline_marriage(individuals, families)
+    #write to log file
     return all_legal_marriage
 
 def output_data(individuals, families):
@@ -198,9 +201,9 @@ def output_data(individuals, families):
 
 def main():
     (individuals, families) = file_parser(filename)
-    sprint1_satisfied = userstories_sprint1(individuals, families)
+    #sprint1_satisfied = userstories_sprint1(individuals, families)
     sprint2_satisfied = userstories_sprint2(individuals, families)
-    output_data(individuals, families)
+    #output_data(individuals, families)
 
 if __name__ == "__main__":
     main()

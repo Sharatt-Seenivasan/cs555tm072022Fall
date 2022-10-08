@@ -9,10 +9,12 @@ def marriage_after_14(individuals, families):
         marriage_date = row['married']
         marriage_time = datetime.strptime(marriage_date, " %d %b %Y")
 
+        #error check if husband in individuals does not exist
         husband_birth = individuals.loc[individuals['id'] == row['Husband ID'], 'birthday'].iloc[0]
         husband_birth_time = datetime.strptime(husband_birth, " %d %b %Y")
         husband_marriage_age = relativedelta(marriage_time, husband_birth_time).years
 
+        #error check if sife in individuals does not exist
         wife_birth = individuals.loc[individuals['id'] == row['Wife ID'], 'birthday'].iloc[0]
         wife_birth_time = datetime.strptime(wife_birth, " %d %b %Y")
         wife_marriage_age = relativedelta(marriage_time, wife_birth_time).years
