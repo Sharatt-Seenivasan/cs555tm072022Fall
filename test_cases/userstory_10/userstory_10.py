@@ -26,6 +26,6 @@ def marriage_after_14(individuals, families):
             all_legal_marriages = False
 
     if all_legal_marriages:
-        print("File has all marriages after 14.")
+        print("File has all marriages after 14.", wife_birth)
 
     return all_legal_marriages
