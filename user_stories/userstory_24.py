@@ -12,7 +12,7 @@ def unique_families(families):
     return_string = ""
     for i in range(len(check_duplicated)):
         if (check_duplicated[i]):
-            return_string += ("ERROR (US24): Family ID " + families.loc[i].at['id'] + " is not a unique ID with a unique spouse.")
+            return_string += ("ERROR: FAMILY: US24: " + families.loc[i].at['id'] + " is not a unique ID with a unique spouse.")
     if return_string != "":
         print(return_string[:-1])
     

@@ -11,7 +11,7 @@ def check_id(id_list):
     
     return_string = ""
     for x in diff_list:
-        return_string += ("ERROR (US22): ID " + x + " is not a unique ID.\n")
+        return_string += ("ERROR: US22: ID " + x + " is not a unique ID.\n")
     if return_string != "":
         print(return_string[:-1])
 
