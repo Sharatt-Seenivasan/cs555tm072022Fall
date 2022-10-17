@@ -1,17 +1,14 @@
-from collections import Counter
 import os
 import pandas as pd
 
 # Sort the list of IDs and check for duplicates
 def check_id(id_list):
-    c1 = Counter(id_list)
-    c2 = Counter(set(id_list))
-    diff = c1-c2
-    diff_list = sorted(set(diff.elements()))
-    
+    visited = set()
+    diff_list = sorted({x for x in id_list if x in visited or (visited.add(x) or False)})
+
     return_string = ""
     for x in diff_list:
-        return_string += ("ERROR: ID " + x + " is not a unique ID.\n")
+        return_string += ("ERROR (US22): ID " + x + " is not a unique ID.\n")
     if return_string != "":
         print(return_string[:-1])
 

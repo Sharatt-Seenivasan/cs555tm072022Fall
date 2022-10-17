@@ -15,13 +15,13 @@ def no_sibline_marriage(individuals, families):
             wife_mother = families.loc[families['id'] == wife_child_family, 'Wife ID'].iloc[0]
         
             if husband_father == wife_father and husband_mother == wife_mother:
-                print("ERROR: Family " + row['id'] + " is a sibling marriage sharing the same parents!")
+                print("ERROR (US18): Family " + row['id'] + " is a sibling marriage sharing the same parents!")
                 all_legal_marriages = False
             elif husband_father == wife_father:
-                print("ERROR: Family " + row['id'] + " is a half-sibling marriage sharing the same father!")
+                print("ERROR (US18): Family " + row['id'] + " is a half-sibling marriage sharing the same father!")
                 all_legal_marriages = False
             elif husband_mother == wife_mother:
-                print("ERROR: Family " + row['id'] + " is a half-sibling marriage sharing the same mother!")
+                print("ERROR (US18): Family " + row['id'] + " is a half-sibling marriage sharing the same mother!")
                 all_legal_marriages = False
 
     if all_legal_marriages:

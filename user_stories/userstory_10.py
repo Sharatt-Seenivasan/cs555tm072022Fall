@@ -19,13 +19,13 @@ def marriage_after_14(individuals, families):
         wife_marriage_age = relativedelta(marriage_time, wife_birth_time).years
 
         if husband_marriage_age < legal_marriage_age and wife_marriage_age < legal_marriage_age:
-            print("ERROR: Both spouses from family " + row['id'] + " married before the age of 14!")
+            print("ERROR (US10): Both spouses from family " + row['id'] + " married before the age of 14!")
             all_legal_marriages = True
         elif husband_marriage_age < legal_marriage_age:
-            print("ERROR: Husband from family " + row['id'] + " married before the age of 14!")
+            print("ERROR (US10): Husband from family " + row['id'] + " married before the age of 14!")
             all_legal_marriages = True
         elif wife_marriage_age < legal_marriage_age:
-            print("ERROR: Wife from family " + row['id'] + " married before the age of 14!")
+            print("ERROR (US10): Wife from family " + row['id'] + " married before the age of 14!")
             all_legal_marriages = True
 
     if all_legal_marriages:
