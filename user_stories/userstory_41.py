@@ -13,5 +13,3 @@ def include_partial_dates(date):
     
     print (datetime_object)
     return datetime_object
-
-include_partial_dates(" 28 JUN 2018")
