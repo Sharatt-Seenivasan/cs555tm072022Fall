@@ -23,3 +23,4 @@ def marriageBeforeDeath(individuals, families):
 
         if str(wife_death) != 'nan' and str(marriageDate) != 'nan':
           if greaterDate(str(wife_death), str(marriageDate)) == False:
+              print("ERROR: US05:  Wife " + row['Wife ID'] + " death date before marriage.")
