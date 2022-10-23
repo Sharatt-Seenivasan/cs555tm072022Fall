@@ -7,7 +7,7 @@ def reject_illegitimate_dates(date):
 
     try:
         date_object = datetime.strptime(date, date_format)
-        print(date_object)
+        #print(date_object)
     except:
         print ("Incorrect date format at <insert ID here>")
 
