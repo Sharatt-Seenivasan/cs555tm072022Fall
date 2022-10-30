@@ -1,19 +1,20 @@
 import pandas as pd
 import parser
 import math
-import gedcom_master
 
-def no_marriages_to_descendants(families_dataframe):
-    for i in range(len(families_dataframe)):
-        if "children" in families_dataframe[i]:
-            ids_of_children=families_dataframe[i]["children"]
-            for j in range(len(ids_of_children)):
-                for k in range(len(families_dataframe)):
-                    if ids_of_children[j]== families_dataframe[k]["Wife ID"] or ids_of_children[j]== families_dataframe[k]["Husband ID"]:
-                        ids_of_desc=families_dataframe[k]["children"]
-                        if families_dataframe[i]["Wife ID"] == ids_of_desc[0] or families_dataframe[i]["Husband ID"]== ids_of_desc[0]:
-                            print("ERROR:USERSTORY17 Parents should not marry any of their descendants")
+def no_marriages_to_descendants(families):
+    for index, row in families.iterrows():
+        if not type(row.children)==float or not math.isnan(row.children):
+            ids_of_children=row.children
+            for child in row.children:
+                for index,row1 in families.iterrows():
+                    wifeid= row1['Wife ID']
+                    husbandid=row1['Husband ID']
+                    if child ==wifeid or child==husbandid:
+                        ids_of_desc=row1.children
+                        if row['Wife ID']==ids_of_desc or row['Husband ID']==ids_of_desc:
                             message="ERROR:USERSTORY17 Parents should not marry any of their descendants"
+                            print(message)
                             return message
                         
 

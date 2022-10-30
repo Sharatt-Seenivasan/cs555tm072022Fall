@@ -1,10 +1,17 @@
 import pytest
 import pandas as pd
-import gedcom_master
-from user_stories import userstory_17
+import pandas as pd
+import io
+import os
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+from datetime import date
+import user_stories
+from user_stories import no_marriages_to_descendants
 
 
 def test_no_marriages_to_descendants():
+  
     families_details=[{'id': 'F1',
   'Husband ID': 'I2',
   'Husband Name': ' Steven /Brindley/',
