@@ -12,7 +12,7 @@ def no_marriages_to_descendants(families):
                     husbandid=row1['Husband ID']
                     if child ==wifeid or child==husbandid:
                         ids_of_desc=row1.children
-                        if row['Wife ID']==ids_of_desc or row['Husband ID']==ids_of_desc:
+                        if row['Wife ID']==ids_of_desc[0] or row['Husband ID']==ids_of_desc[0]:
                             message="ERROR:USERSTORY17 Parents should not marry any of their descendants"
                             print(message)
                             return message

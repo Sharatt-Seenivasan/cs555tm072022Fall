@@ -9,9 +9,11 @@ from datetime import date
 import user_stories
 from user_stories import parents_not_too_old
 
+import pytest
+import pandas as pd
+
 def test_parents_not_too_old():
-  
-  person_details = [{'id': 'I2',
+    person_details = [{'id': 'I2',
   'name': ' Steven /Brindley/',
   'gender': 'M',
   'birthday': ' 2 JUL 1969',
@@ -27,14 +29,16 @@ def test_parents_not_too_old():
   'birthday': ' 10 AUG 2017',
   'child': 'F2',
   'age': 5},]
-  family_details=[{'id': 'F2',
+    family_details=[{'id': 'F2',
   'Husband ID': 'I2',
   'Husband Name': ' Steven /Brindley/',
   'Wife ID': 'I7',
   'Wife Name': ' Lisa /Rutherford/',
   'children': ['I8'],
   'married': ' 12 JUL 2016'},]
-  
-  strout= "ERROR:USERSTORY12 parents are too old"
-  assert strout == parents_not_too_old(person_details,family_details)
-
+    df1=pd.DataFrame(person_details)
+    df2=pd.DataFrame(family_details)
+    
+    strout= "ERROR:USERSTORY12 parents are too old"
+    print(person_details)
+    assert strout == parents_not_too_old(df1,df2)
