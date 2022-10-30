@@ -1,8 +1,12 @@
 import os
+import path
+import sys
 import unittest
 from unittest.mock import patch
 from userstory_30 import *
-from user_stories import file_parser, output_data
+
+#directory = path.Path(__file__).abspath()
+#sys.path.append(directory.parent.parent)
 
 class TestStringMethods(unittest.TestCase):
 
