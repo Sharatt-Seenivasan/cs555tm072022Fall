@@ -2,12 +2,12 @@ import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import date
+import user_stories.userStory41.userstory_41 as userstory_41
+import user_stories.userStory42.userstory_42 as userstory_42
 
 individuals = []
 individuals_id_and_name = []
 families = []
-#filename = 'test_data.ged'
-filename = 'test_cases/userstory_24/userstory_24_testdata1.ged'
 
 allowed_tags = {
     0 : ['INDI','FAM','HEAD','TRLR','NOTE'],
@@ -66,40 +66,56 @@ def createIndDataframe(filename):
         level = line[0]
         if 'INDI' in line.split() and level == '0':
           person['id'] = line.split()[1].replace('@','')
+          person['index'] = i
         if 'NAME' in line.split():
           person['name'] = line.split('NAME')[1].replace('\n','')
           individuals_id_and_name[person['id']] = person['name']
         if 'SEX' in line.split() and level == '1':
           person['gender'] = line.split()[2]
         if 'BIRT' in line.split():
-          person['birthday'] =  lines[j+1].split('DATE')[1].replace('\n','')
+          userstory_42.reject_illegitimate_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          birthdate = userstory_41.include_partial_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          person['birthday'] =  birthdate
         if 'DEAT' in line.split():
           is_dead = True
-          person['death'] = lines[j+1].split('DATE')[1].replace('\n','')
+          userstory_42.reject_illegitimate_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          deathdate = userstory_41.include_partial_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          person['death'] = deathdate
         if 'FAMC' in line.split():
           person['child'] = line.split()[2].replace('@','')
         if 'FAMS' in line.split():
-          person['spouse'] = line.split()[2].replace('@','')
+          if 'spouse' in person.keys():
+              person['spouse'].append(line.split()[2].replace('@',''))
+          else :
+              person['spouse'] = [line.split()[2].replace('@','')]
     else:
       for j in range(i,len(lines)-1):
         line = lines[j]
         level = line[0]
         if 'INDI' in line.split() and level == '0':
           person['id'] = line.split()[1].replace('@','')
+          person['index'] = i
         if 'NAME' in line.split():
           person['name'] = line.split('NAME')[1].replace('\n','')
           individuals_id_and_name[person['id']] = person['name']
         if 'SEX' in line.split() and level == '1':
           person['gender'] = line.split()[2]
         if 'BIRT' in line.split():
-          person['birthday'] = lines[j+1].split('DATE')[1].replace('\n','')
+          userstory_42.reject_illegitimate_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          birthdate = userstory_41.include_partial_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          person['birthday'] = birthdate
         if 'DEAT' in line.split():
           is_dead = True
-          person['death'] = lines[j+1].split('DATE')[1].replace('\n','')
+          userstory_42.reject_illegitimate_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          deathdate = userstory_41.include_partial_dates(lines[j+1].split('DATE')[1].replace('\n',''),j+1)
+          person['death'] = deathdate
         if 'FAMC' in line.split():
           person['child'] = line.split()[2].replace('@','')
         if 'FAMS' in line.split():
-          person['spouse'] = line.split()[2].replace('@','')
+          if 'spouse' in person.keys():
+              person['spouse'].append(line.split()[2].replace('@',''))
+          else :
+              person['spouse'] = [line.split()[2].replace('@','')]
 
     if is_dead:
        person['alive'] = False
@@ -137,10 +153,13 @@ def createFamilyDataframe(filename, individuals_id_and_name):
         level = line[0]
         if 'FAM' in line.split() and level == '0':
           family['id'] = line.split()[1].replace('@','')
+          family['index'] = i
         if 'MARR' in line.split():
           family['married'] = lines[j+1].split('DATE')[1].replace('\n','')
+          family['are divorced'] = False
         if 'DIV' in line.split():
           family['divorced'] = lines[j+1].split('DATE')[1].replace('\n','')
+          family['are divorced'] = True
         if 'HUSB' in line.split():
           family['Husband ID'] = line.split()[2].replace('@','')
           try:
@@ -165,9 +184,10 @@ def createFamilyDataframe(filename, individuals_id_and_name):
         level = line[0]
         if 'FAM' in line.split() and level == '0':
           family['id'] = line.split()[1].replace('@','')
+          family['index'] = i
         if 'MARR' in line.split():
-          family['are divorced'] = False
           family['married'] = lines[j+1].split('DATE')[1].replace('\n','')
+          family['are divorced'] = False
         if 'DIV' in line.split():
           family['are divorced'] = True
           family['divorced'] = lines[j+1].split('DATE')[1].replace('\n','')
@@ -220,16 +240,15 @@ def getFamilyIndices(filename):
   f.close()
   return indices
 
-def file_parser(ged_filename):
-    (individuals, individuals_id_and_name) = createIndDataframe(ged_filename)
-    families = createFamilyDataframe(ged_filename, individuals_id_and_name)
+def file_parser(filename):
+    (individuals, individuals_id_and_name) = createIndDataframe(filename)
+    families = createFamilyDataframe(filename, individuals_id_and_name)
     individuals = pd.DataFrame(individuals)
     families = pd.DataFrame(families)
     return (individuals, families)
 
-def output_data(individuals, families, ged_filename):
-    output_excel = ged_filename.strip('.ged') + '.xlsx'
+def output_data(individuals, families):
+    output_excel = filename.strip('.ged') + '.xlsx'
     with pd.ExcelWriter(output_excel) as writer:
         individuals.to_excel(writer, sheet_name="Individuals")
         families.sort_values(by = ['id']).to_excel(writer, sheet_name="Families")
-    return output_excel

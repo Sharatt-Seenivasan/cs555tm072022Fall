@@ -6,9 +6,7 @@ from dateutil.relativedelta import relativedelta
 import math
 
 def greaterDate(first_date, second_date):
-    if datetime.strptime(first_date, " %d %b %Y") > datetime.strptime(second_date, " %d %b %Y"):
-        return True
-    return False
+    return datetime.strptime(first_date, " %d %b %Y") > datetime.strptime(second_date, " %d %b %Y")
 
 
 def divorceBeforeDeath(individuals, families):
