@@ -18,8 +18,8 @@ def divorceBeforeDeath(individuals, families):
 
         if str(husband_death) != 'nan' and str(divorceDate) != 'nan':
           if greaterDate(str(husband_death), str(divorceDate)) == False:
-              print("ERROR: US06: Husband " + row['Husband ID'] + " death date before divorce.")
+              print("ERROR: US06: Input Line #: " + str(row['index']) + ": Husband " + row['Husband ID'] + " death date before divorce.")
 
         if str(wife_death) != 'nan' and str(divorceDate) != 'nan':
           if greaterDate(str(wife_death), str(divorceDate)) == False:
-              print("ERROR: US06: Wife " + row['Wife ID'] + " death date before divorce.")
+              print("ERROR: US06: Input Line #: " + str(row['index']) + ": Wife " + row['Wife ID'] + " death date before divorce.")
