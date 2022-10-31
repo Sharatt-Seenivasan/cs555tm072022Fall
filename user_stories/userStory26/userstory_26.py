@@ -16,10 +16,11 @@ def hasCorrespondingEntries(individuals_dataframe, family_dataframe):
       elif row['id'] not in children:
         print("ERROR: INDIVIDUAL: US26: " + str(row['index']) + ": " + row['id'] + " not in Family " +  row['child'] + " as a child.")
     if str(row['spouse']) != 'nan':
-      husband_id = family_dataframe.loc[family_dataframe['id'] == row['spouse'], 'Husband ID'].iloc[0]
-      wife_id = family_dataframe.loc[family_dataframe['id'] == row['spouse'], 'Wife ID'].iloc[0]
+      for family_id in row['spouse']:
+        husband_id = family_dataframe.loc[family_dataframe['id'] == family_id, 'Husband ID'].iloc[0]
+        wife_id = family_dataframe.loc[family_dataframe['id'] == family_id, 'Wife ID'].iloc[0]
       if row['id'] != husband_id and row['id'] != wife_id:
-        print("ERROR: INDIVIDUAL: US26: " + str(row['index']) + ": " + row['id'] + " not in Family " +  row['spouse'] + " as a spouse.")
+        print("ERROR: INDIVIDUAL: US26: " + str(row['index']) + ": " + row['id'] + " not in Family " +  family_id + " as a spouse.")
 
 
   for index, row in family_dataframe.iterrows():
