@@ -13,7 +13,7 @@ class TestStringMethods(unittest.TestCase):
         individuals, families = file_parser(filename)
         #output = output_data(individuals, families, filename)
         no_siblings_marriage(individuals, families)
-        mock_print.assert_called_with('ERROR: FAMILY: US18: F2: Sibling marriage sharing the same parents')
+        mock_print.assert_called_with('ERROR: FAMILY: US18: 134: F2: Sibling marriage sharing the same parents')
 
 if __name__ == '__main__':
     unittest.main()

@@ -38,9 +38,6 @@ def sprint3AcceptanceTest(filename):
     (individuals,individuals_id_and_name) = createIndDataframe(filename)
     families = createFamilyDataframe(filename, individuals_id_and_name)
 
-    print(individuals)
-    print(families)
-
     #user story 1
     areIndividualDatesBeforeCurrentDate(individuals,id_indices)
     areFamilyDatesBeforeCurrentDate(families, family_indices)
@@ -76,13 +73,8 @@ def sprint3AcceptanceTest(filename):
     individual_ages(individuals, id_indices)
 
     #user story 40
-    #????????
-
-    #user story 41
-    #?????????
-
-    #user story 42
-    #?????????
+    #does not compile
+    #marriage_before_divorce_getting_error_line_no(families)
 
     #user story 10
     marriage_after_14(individuals,families)
@@ -91,6 +83,7 @@ def sprint3AcceptanceTest(filename):
     no_siblings_marriage(individuals,families)
 
     #user story 28
+    #needs fixing
     listChildrenByAge(individuals,families)
 
     #user story 29
@@ -100,18 +93,24 @@ def sprint3AcceptanceTest(filename):
     parents_not_too_old(individuals,families,family_indices)
 
     #user story 17
+    #does not print
     no_marriages_to_descendants(families,family_indices)
 
     #user story 19
+    #does not print
     no_cousins_marriage(individuals,families)
 
     #user story 20
-    no_newphew_niece_marriage(individuals,families)
+    #does not compile
+    #no_newphew_niece_marriage(individuals,families)
 
     #user story 30
     list_living_married(individuals,families)
 
     #user story 31
     list_living_single(individuals,families)
+
+    print(individuals)
+    print(families)
 
 sprint3AcceptanceTest(filename)

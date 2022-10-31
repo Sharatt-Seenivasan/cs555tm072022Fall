@@ -8,8 +8,9 @@ import user_stories.userStory42.userstory_42 as userstory_42
 individuals = []
 individuals_id_and_name = []
 families = []
-#filename = 'test_data.ged'
-filename = 'test_cases/userstory_24/userstory_24_testdata1.ged'
+filename = 'test_data.ged'
+#filename = 'Sprint3AcceptanceTest.ged'
+#filename = 'test_cases/userstory_24/userstory_24_testdata1.ged'
 
 allowed_tags = {
     0 : ['INDI','FAM','HEAD','TRLR','NOTE'],
@@ -388,11 +389,11 @@ def file_parser(filename):
 
 def userstories_sprint1(individuals, families):
     #has_unique_ids = userstory_22.unique_ids(individuals, families)
-    has_unique_families = userstory_24.unique_families(families)
+    #has_unique_families = userstory_24.unique_families(families)
     return has_unique_families
 
 def userstories_sprint2(individuals, families):
-    all_legal_marriage = userstory_10.marriage_after_14(individuals, families)
+    #all_legal_marriage = userstory_10.marriage_after_14(individuals, families)
     #has_no_sibling_marriage = userstory_18.no_sibline_marriage(individuals, families)
     #write to log file
     return all_legal_marriage
@@ -405,9 +406,9 @@ def output_data(individuals, families):
 
 def main():
     (individuals, families) = file_parser(filename)
-    sprint1_satisfied = userstories_sprint1(individuals, families)
+    #sprint1_satisfied = userstories_sprint1(individuals, families)
     #sprint2_satisfied = userstories_sprint2(individuals, families)
-    #output_data(individuals, families)
+    output_data(individuals, families)
 
 if __name__ == "__main__":
     main()

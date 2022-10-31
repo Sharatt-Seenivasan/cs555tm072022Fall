@@ -14,7 +14,7 @@ class TestStringMethods(unittest.TestCase):
         individuals, families = file_parser(filename)
         #output = output_data(individuals, families, filename)
         list_living_single(individuals, families)
-        mock_print.assert_called_with("US30: The list of living people that are married: ['I1', 'I4', 'I8']")
+        mock_print.assert_called_with("US31: The list of living people that are married: ['I1', 'I4', 'I8']")
 
 if __name__ == '__main__':
     unittest.main()

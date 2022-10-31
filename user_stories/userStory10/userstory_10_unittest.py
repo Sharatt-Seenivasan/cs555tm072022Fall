@@ -13,7 +13,7 @@ class TestStringMethods(unittest.TestCase):
         individuals, families = file_parser(filename)
         #output = output_data(individuals, families, filename)
         marriage_after_14(individuals, families)
-        mock_print.assert_called_with('ERROR: FAMILY: US10: F5: Wife (I11) married before the age of 14')
+        mock_print.assert_called_with('ERROR: FAMILY: US10: 151: F5: Wife (I11) married before the age of 14')
 
 if __name__ == '__main__':
     unittest.main()

@@ -24,10 +24,10 @@ def areFamilyDatesBeforeCurrentDate(families_dataframe, family_id_indices):
   for id in families_dataframe['id']:
     marriage_date = families_dataframe.loc[families_dataframe['id'] == id, 'married'].iloc[0]
     if isDateBeforeCurrentDate(datetime.strptime(marriage_date," %d %b %Y")) == False:
-      print("ERROR: FAMILY: US01:" + str(family_id_indices[id]) + ": " + id + " Married" + marriage_date + " occurs in the future")
+      print("ERROR: FAMILY: US01: " + str(family_id_indices[id]) + ": " + id + " Married" + marriage_date + " occurs in the future")
     
   are_divorced = families_dataframe.loc[families_dataframe['id'] == id, 'are divorced'].iloc[0]
   if are_divorced:
     divorce_date = families_dataframe.loc[families_dataframe['id'] == id, 'divorced'].iloc[0]
     if isDateBeforeCurrentDate(datetime.strptime(divorce_date," %d %b %Y")) == False:
-      print("ERROR: FAMILY: US01:" + str(family_id_indices[id]) + ": " + id + " Divorce" + divorce_date + " occurs in the future")
+      print("ERROR: FAMILY: US01: " + str(family_id_indices[id]) + ": " + id + " Divorce" + divorce_date + " occurs in the future")

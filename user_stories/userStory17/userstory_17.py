@@ -1,5 +1,4 @@
 import pandas as pd
-import parser
 import math
 
 def no_marriages_to_descendants(families,family_id_indices):
