@@ -9,17 +9,6 @@ from datetime import date
 import user_stories
 from user_stories import no_marriages_to_descendants
 
-
-import pytest
-import pandas as pd
-import pandas as pd
-import io
-import os
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from datetime import date
-
-
 def test_no_marriages_to_descendants():
     families_details=[{'id': 'F1',
   'Husband ID': 'I2',
@@ -47,7 +36,7 @@ def test_no_marriages_to_descendants():
     strout= "ERROR:USERSTORY17 Parents should not marry any of their descendants"
      
     assert strout == no_marriages_to_descendants(df2)
-    print('---')
+ 
     
     
     
