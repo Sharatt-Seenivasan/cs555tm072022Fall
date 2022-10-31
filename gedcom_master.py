@@ -2,14 +2,14 @@ import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import date
-#import user_stories.userStory41.userstory_41 as userstory_41
-#import user_stories.userStory42.userstory_42 as userstory_42
+import user_stories.userStory41.userstory_41 as userstory_41
+import user_stories.userStory42.userstory_42 as userstory_42
 
 individuals = []
 individuals_id_and_name = []
 families = []
-filename = 'test_data.ged'
-#filename = 'test_cases/userstory_24/userstory_24_testdata1.ged'
+#filename = 'test_data.ged'
+filename = 'test_cases/userstory_24/userstory_24_testdata1.ged'
 
 allowed_tags = {
     0 : ['INDI','FAM','HEAD','TRLR','NOTE'],
@@ -86,7 +86,10 @@ def createIndDataframe(filename):
         if 'FAMC' in line.split():
           person['child'] = line.split()[2].replace('@','')
         if 'FAMS' in line.split():
-          person['spouse'] = line.split()[2].replace('@','')
+          if 'spouse' in person.keys():
+              person['spouse'].append(line.split()[2].replace('@',''))
+          else :
+              person['spouse'] = [line.split()[2].replace('@','')]
     else:
       for j in range(i,len(lines)-1):
         line = lines[j]
@@ -111,7 +114,10 @@ def createIndDataframe(filename):
         if 'FAMC' in line.split():
           person['child'] = line.split()[2].replace('@','')
         if 'FAMS' in line.split():
-          person['spouse'] = line.split()[2].replace('@','')
+          if 'spouse' in person.keys():
+              person['spouse'].append(line.split()[2].replace('@',''))
+          else :
+              person['spouse'] = [line.split()[2].replace('@','')]
 
     if is_dead:
        person['alive'] = False
@@ -152,8 +158,10 @@ def createFamilyDataframe(filename, individuals_id_and_name):
           family['index'] = i
         if 'MARR' in line.split():
           family['married'] = lines[j+1].split('DATE')[1].replace('\n','')
+          family['are divorced'] = False
         if 'DIV' in line.split():
           family['divorced'] = lines[j+1].split('DATE')[1].replace('\n','')
+          family['are divorced'] = True
         if 'HUSB' in line.split():
           family['Husband ID'] = line.split()[2].replace('@','')
           try:
@@ -180,8 +188,8 @@ def createFamilyDataframe(filename, individuals_id_and_name):
           family['id'] = line.split()[1].replace('@','')
           family['index'] = i
         if 'MARR' in line.split():
-          family['are divorced'] = False
           family['married'] = lines[j+1].split('DATE')[1].replace('\n','')
+          family['are divorced'] = False
         if 'DIV' in line.split():
           family['are divorced'] = True
           family['divorced'] = lines[j+1].split('DATE')[1].replace('\n','')
@@ -372,19 +380,19 @@ def save_family_data(filename, individuals_id_and_name):
     return families
 
 def file_parser(filename):
-    (individuals, individuals_id_and_name) = save_ind_data(filename)
-    families = save_family_data(filename, individuals_id_and_name)
+    (individuals, individuals_id_and_name) = createIndDataframe(filename)
+    families = createFamilyDataframe(filename, individuals_id_and_name)
     individuals = pd.DataFrame(individuals)
     families = pd.DataFrame(families)
     return (individuals, families)
 
 def userstories_sprint1(individuals, families):
     #has_unique_ids = userstory_22.unique_ids(individuals, families)
-    #has_unique_families = userstory_24.unique_families(families)
+    has_unique_families = userstory_24.unique_families(families)
     return has_unique_families
 
 def userstories_sprint2(individuals, families):
-    #all_legal_marriage = userstory_10.marriage_after_14(individuals, families)
+    all_legal_marriage = userstory_10.marriage_after_14(individuals, families)
     #has_no_sibling_marriage = userstory_18.no_sibline_marriage(individuals, families)
     #write to log file
     return all_legal_marriage
@@ -397,9 +405,9 @@ def output_data(individuals, families):
 
 def main():
     (individuals, families) = file_parser(filename)
-    #sprint1_satisfied = userstories_sprint1(individuals, families)
+    sprint1_satisfied = userstories_sprint1(individuals, families)
     #sprint2_satisfied = userstories_sprint2(individuals, families)
-    output_data(individuals, families)
+    #output_data(individuals, families)
 
 if __name__ == "__main__":
     main()
