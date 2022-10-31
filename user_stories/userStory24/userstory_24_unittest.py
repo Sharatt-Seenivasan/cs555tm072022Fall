@@ -3,7 +3,6 @@ import sys
 import unittest
 from unittest.mock import patch
 from userstory_24 import *
-
 sys.path.append('')
 from gedcom_helper import file_parser, output_data
 
