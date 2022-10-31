@@ -1,7 +1,6 @@
 from datetime import *
 from dateutil.relativedelta import *
 
-    
 def include_partial_dates(date, index):
     listDate = date.split()
     if len(listDate) == 3:

@@ -8,7 +8,7 @@ from user_stories import userstory_1,userstory_2,userstory_3,userstory_4,usersto
 from user_stories import userstory_10,userstory_18, userstory_42
 
 
-filename = 'test_cases/Sprint_2_Acceptance_Test/Sprint2AcceptanceTest.ged'
+filename = 'Sprint2AcceptanceTest.ged'
 
 
 def sprint2AcceptanceTest(filename):

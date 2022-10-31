@@ -5,8 +5,6 @@
 
 
 import pandas as pd
-import parser
-import math
 
 def marriage_before_divorce_getting_error_line_no(families_dataframe):
     for i in range(len(families_dataframe)): 
@@ -19,6 +17,7 @@ def marriage_before_divorce_getting_error_line_no(families_dataframe):
                     #print(message)
                     message1= "the line number is "+str(get_line(marr,divv,filename))
     return message1
+
 def get_line(marr,divv,filename):
     f=open(filename).read()
     f_list=f.split("\n")

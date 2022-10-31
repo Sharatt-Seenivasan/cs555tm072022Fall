@@ -1,8 +1,4 @@
-import io
-import unittest
-import unittest.mock
 import pandas as pd
-import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import date
@@ -22,6 +18,6 @@ def areBirthdaysBeforeMarriages(individuals_dataframe, families_dataframe, famil
     if compareDates(marriage_date, wife_birthday) == False:
       print("ERROR: FAMILY: US02: " + str(family_id_indices[row['id']]) + ": " + row['id'] + " Wife's birth date" + wife_birthday + " after marriage date" + marriage_date)
 
-(individuals,individuals_id_and_name) = createIndDataframe("/content/birthdayBeforeMarriageTestData1.ged")
-families = createFamilyDataframe("/content/birthdayBeforeMarriageTestData1.ged", individuals_id_and_name)
-areBirthdaysBeforeMarriages(individuals,families,getFamilyIndices("/content/birthdayBeforeMarriageTestData1.ged"))
+#(individuals,individuals_id_and_name) = createIndDataframe("/content/birthdayBeforeMarriageTestData1.ged")
+#families = createFamilyDataframe("/content/birthdayBeforeMarriageTestData1.ged", individuals_id_and_name)
+#areBirthdaysBeforeMarriages(individuals,families,getFamilyIndices("/content/birthdayBeforeMarriageTestData1.ged"))

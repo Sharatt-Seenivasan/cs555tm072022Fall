@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 
 # Sort the list of IDs and check for duplicates
@@ -26,8 +25,3 @@ def unique_ids(individuals, families):
         print("File has all unique IDs.")
 
     return all_unique
-
-
-#filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
-#filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/userstory_7/uniqueIDsTestData1.xlsx'
-#unique_ids(filename)
