@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 
 def unique_families(families):
@@ -21,8 +20,3 @@ def unique_families(families):
         print("File has all unique families.")
 
     return all_unique
-
-
-#filename = os.path.abspath(os.path.dirname(__file__)) + '/../test_data.xlsx'
-#filename = os.path.abspath(os.path.dirname(__file__)) + '/../testcases/usetstory_8/uniqueFamiliesTestData1.xlsx'
-#unique_families(filename)

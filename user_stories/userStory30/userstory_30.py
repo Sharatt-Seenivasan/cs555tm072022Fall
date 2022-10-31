@@ -1,11 +1,10 @@
-import os
 import pandas as pd
 
 def list_living_married(individuals, families):
     individuals_list = list(individuals['id'])
-    families_list = list(families['Husband ID']) + list(families['Wife ID'])
+    living_people = [row['id'] for index,row in individuals.iterrows() if row['alive']]
+    married_people = [row['id'] for index,row in individuals.iterrows() if not pd.isna(row['spouse'])]
 
-    return_string = "The list of living people that are married: "
-    return_string += ','.join(families_list)
+    living_married = [x for x in living_people if x in married_people]
 
-    print(individuals_list)
+    print("US30: The list of living people that are married: " + str(living_married))
