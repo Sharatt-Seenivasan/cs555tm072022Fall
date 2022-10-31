@@ -22,6 +22,6 @@ def unique_ids(individuals, families):
     all_unique = has_unique_individuals and has_unique_families
 
     if all_unique:
-        print("File has all unique IDs.")
+        print("US22: File has all unique IDs.")
 
     return all_unique
