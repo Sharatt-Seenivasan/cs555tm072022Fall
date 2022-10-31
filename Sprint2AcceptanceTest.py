@@ -50,7 +50,7 @@ def sprint2AcceptanceTest(filename):
   userstory_10.marriage_after_14(individuals,families)
 
   #user story 18
-  userstory_18.no_siblings_marriage(individuals,families)
+  userstory_18.no_sibline_marriage(individuals,families)
 
   #user story 26
   userstory_26.hasCorrespondingEntries(individuals,families)

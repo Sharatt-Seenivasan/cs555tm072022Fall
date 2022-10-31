@@ -1,3 +1,4 @@
+import os
 import sys
 import unittest
 from unittest.mock import patch
@@ -9,7 +10,7 @@ class TestStringMethods(unittest.TestCase):
 
     @patch('builtins.print')
     def test_file_1(self, mock_print):
-        filename1 = __file__.split('_unittest.py')[0] + '_testdata1.ged'
+        filename1 = os.path.dirname(os.path.abspath(__file__)) + '/userstory_24_testdata1.ged'
         individuals, families = file_parser(filename1)
         output = output_data(individuals, families, filename1)
         unique_families(families)
