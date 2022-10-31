@@ -17,6 +17,6 @@ def unique_families(families):
     
     all_unique = not any(check_duplicated)
     if all_unique:
-        print("File has all unique families.")
+        print("US24: File has all unique families.")
 
     return all_unique
