@@ -1,36 +1,35 @@
 import pandas as pd
 
 def no_newphew_niece_marriage(individuals, families):
-    for i, row in families.iterrows():
-        if row['Husband ID'] in individuals['id'].values and row['Wife ID'] in individuals['id'].values:
-            husband_family = individuals.loc[individuals['id'] == row['Husband ID'], 'child'].iloc[0]
-            wife_family = individuals.loc[individuals['id'] == row['Wife ID'], 'child'].iloc[0]
+    for index, row in families.iterrows():
+        wife_id = row['Wife ID']
+        husband_id = row['Husband ID']
+        if husband_id in getNiblings(wife_id,individuals,families):
+            print("ERROR: FAMILY: US20: Line Index # " + str(row['index']) + ": Family " + row['id'] + " is a marriage between a nephew and an aunt!")
+        if wife_id in getNiblings(husband_id,individuals,families):
+            print("ERROR: FAMILY: US20: Line Index # " + str(row['index']) + ": Family " + row['id'] + " is a marriage between a niece and an uncle!")
 
+def getNiblings(person_id, individuals_dataframe, families_dataframe):
+    niblings = []
+    spouse_type = ''
+    for index, row in families_dataframe.iterrows():
+        if str(row['children']) != 'nan':
+            if person_id in row['children']:
+                for child in row['children']:
+                    if child != person_id:
+                        niblings.extend(getChildren(child,individuals_dataframe, families_dataframe))
+    return niblings
 
-            if not pd.isna(husband_family) and not pd.isna(wife_family):
-                husband_father = families.loc[families['id'] == husband_family, 'Husband ID'].iloc[0]
-                husband_mother = families.loc[families['id'] == husband_family, 'Wife ID'].iloc[0]
-                wife_father = families.loc[families['id'] == wife_family, 'Husband ID'].iloc[0]
-                wife_mother = families.loc[families['id'] == wife_family, 'Wife ID'].iloc[0]
-
-                #Define grandparents of the husband
-                husband_father_father = families.loc[families['id'] == husband_father, 'Husband ID'].iloc[0]
-                husband_father_mother = families.loc[families['id'] == husband_father, 'Wife ID'].iloc[0]
-                husband_mother_father = families.loc[families['id'] == husband_mother, 'Husband ID'].iloc[0]
-                husband_mother_mother = families.loc[families['id'] == husband_mother, 'Wife ID'].iloc[0]
-
-                #Define grandparents of the wife
-                wife_father_father = families.loc[families['id'] == wife_father, 'Husband ID'].iloc[0]
-                wife_father_mother = families.loc[families['id'] == wife_father, 'Wife ID'].iloc[0]
-                wife_mother_father = families.loc[families['id'] == wife_mother, 'Husband ID'].iloc[0]
-                wife_mother_mother = families.loc[families['id'] == wife_mother, 'Wife ID'].iloc[0]
-
-                if husband_father_father == wife_father and husband_father_mother == wife_mother:
-                    print('ERROR: FAMILY: US20: ' + row['id'] + ' is a marriage between a nephew and an aunt!')
-                elif husband_mother_father == wife_father and husband_mother_mother == wife_mother:
-                    print('ERROR: FAMILY: US20: ' + row['id'] + ' is a marriage between a nephew and an aunt!')
-                elif wife_father_father == husband_father and wife_father_mother == husband_mother:
-                    print('ERROR: FAMILY: US20: ' + row['id'] + ' is a marriage between a niece and an uncle!')
-                elif wife_mother_father == husband_father and wife_mother_mother == husband_mother:
-                    print('ERROR: FAMILY: US20: ' + row['id'] + ' is a marriage between a niece and an uncle!')
-
+def getChildren(person_id, individuals_dataframe, families_dataframe):
+    children = []
+    spouse_type = ''
+    if individuals_dataframe.loc[individuals_dataframe['id'] == person_id, 'gender'].iloc[0] == 'M':
+        spouse_type = 'Husband ID'
+    else:
+        spouse_type = 'Wife ID'
+    for index, row in families_dataframe.iterrows():
+        if row[spouse_type] == person_id:
+            if str(row['children']) != 'nan':
+                for child in row['children']:
+                    children.append(child)
+    return children
