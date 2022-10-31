@@ -17,8 +17,8 @@ def marriageBeforeDeath(individuals, families):
 
         if str(husband_death) != 'nan' and str(marriageDate) != 'nan':
           if greaterDate(str(husband_death), str(marriageDate)) == False:
-              print("ERROR: US05: Husband " + row['Husband ID'] + " death date before marriage.")
+              print("ERROR: US05: Input Line # " + str(row['index']) +": Husband " + row['Husband ID'] + " death date before marriage.")
 
         if str(wife_death) != 'nan' and str(marriageDate) != 'nan':
           if greaterDate(str(wife_death), str(marriageDate)) == False:
-              print("ERROR: US05:  Wife " + row['Wife ID'] + " death date before marriage.")
+              print("ERROR: US05: Input Line # " + str(row['index']) +":Wife " + row['Wife ID'] + " death date before marriage.")
