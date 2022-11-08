@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -20,6 +14,6 @@ def listRecentDeaths(individuals):
                 if ((current - deathDay).days < 30):
                     name=row["name"].strip("/")
                     deathdate= str(row["death"])
-                    list1.append("US:36 List of recent deaths: "+name +" "+str(deathdate))
+                    recentdeathlist.append("US:36 List of recent deaths: "+name +" "+str(deathdate))
     return recentdeathlist
 

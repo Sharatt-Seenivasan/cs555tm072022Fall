@@ -7,14 +7,13 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from datetime import date
 import user_stories
-from user_stories import listRecentDeaths
+from user_stories import listUpComingBirthdays
 
-
-def test_listRecentDeaths():
+def test_listUpComingBirthdays():
     
-    testData = "export-BloodTree42.ged"
+    testData = "export-BloodTree33.ged"
     (individuals,individuals_id_and_name) = createIndDataframe(testData)
-    strout='US:36 List of recent deaths:  Sandy /T  20 OCT 2022'
-    str1=listRecentDeaths(individuals)
+    strout='US:38 List of upcoming birthdays: Kavyasri T :  2 DEC 1990'
+    str1=listUpComingBirthdays(individuals)
     assert strout==str1[0]
 
