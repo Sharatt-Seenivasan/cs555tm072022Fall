@@ -6,7 +6,7 @@ def is_within_last_30_days(event_date):
     #check if value is nan
     if event_date == 'nan':
         return False
-    return abs(date.today() - datetime.strptime(event_date," %d %b %Y")).days() <= 30
+    return (date.today() - datetime.strptime(event_date," %d %b %Y").date()).days() <= 30
 
 # List all living spouses and descendants of people in a GEDCOM file who died in the last 30 days
 def list_recent_survivors(individuals, families):
@@ -31,8 +31,7 @@ def list_recent_survivors(individuals, families):
                         living_descendents.append((row_2['id'], row_2['age']))
 
             new_recent_survivors = {
-                'name': row['id'], 
-                'age': row['age'], 
+                'name': row['id'],
                 'living spouses': living_spouses, 
                 'living descendents': living_descendents
             }
