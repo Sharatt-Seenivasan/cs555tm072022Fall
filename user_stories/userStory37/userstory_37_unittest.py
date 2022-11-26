@@ -12,7 +12,7 @@ class TestStringMethods(unittest.TestCase):
     def test_file_1(self, mock_print):
         filename = os.path.dirname(__file__) + '/../../test_data.ged'
         individuals, families = file_parser(filename)
-        #output = output_data(individuals, families, filename)
+        output = output_data(individuals, families, filename)
         list_recent_survivors(individuals, families)
         mock_print.assert_called_with("US30: The list of living people that are married: ['I2', 'I3', 'I5', 'I6', 'I7']")
 

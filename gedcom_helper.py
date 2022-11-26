@@ -247,7 +247,7 @@ def file_parser(filename):
     families = pd.DataFrame(families)
     return (individuals, families)
 
-def output_data(individuals, families):
+def output_data(individuals, families, filename):
     output_excel = filename.strip('.ged') + '.xlsx'
     with pd.ExcelWriter(output_excel) as writer:
         individuals.to_excel(writer, sheet_name="Individuals")
