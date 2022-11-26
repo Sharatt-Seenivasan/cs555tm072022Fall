@@ -6,7 +6,7 @@ def listOrphans(individuals, families):
     for index, row in individuals.iterrows():
         if row['age'] < 18:
             if hasDeadParents(row['id'],individuals,families):
-                orphans.append(row['id'])
+                orphans.append((row['id'], row['age']))
     if len(orphans) > 0:
         print('US33: List of Orphans:')
         print(orphans) 
