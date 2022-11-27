@@ -13,7 +13,8 @@ def listRecentDeaths(individuals):
             if (current.year - deathDay.year == 0 ):
                 if ((current - deathDay).days < 30):
                     name=row["name"].strip("/")
+                    age=row["age"]
                     deathdate= str(row["death"])
-                    recentdeathlist.append("US:36 List of recent deaths: "+name +" "+str(deathdate))
+                    recentdeathlist.append("US:36 List of recent deaths: "+name +" : "+ "age:"+str(age) +str(deathdate))
     return recentdeathlist
 

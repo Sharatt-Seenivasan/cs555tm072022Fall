@@ -13,8 +13,9 @@ def listUpComingBirthdays(individuals):
             if ((birthday.month-current.month) ==0 or (birthday.month-current.month)==1 ):
                 if((birthday.day-current.day)<30):
                     name=''.join(row["name"].split('/'))
+                    age=row["age"]
                     birthday= str(row["birthday"])
-                    upcomingbirthdays.append("US:38 List of upcoming birthdays:" +name +" : "+str(birthday))
+                    upcomingbirthdays.append("US:38 List of upcoming birthdays:" +name +" : "+ "age:"+str(age) +str(birthday))
                     print(upcomingbirthdays)
     return upcomingbirthdays 
 

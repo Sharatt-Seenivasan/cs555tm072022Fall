@@ -14,7 +14,7 @@ def test_listRecentDeaths():
     
     testData = "export-BloodTree42.ged"
     (individuals,individuals_id_and_name) = createIndDataframe(testData)
-    strout='US:36 List of recent deaths:  Sandy /T  20 OCT 2022'
+    strout='US:36 List of recent deaths:  Sandy /T : age:72 20 OCT 2022'
     str1=listRecentDeaths(individuals)
     assert strout==str1[0]
 
