@@ -1,6 +1,6 @@
-import pandas as pd
+# User Story 1
+
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 from datetime import date
 
 def isDateBeforeCurrentDate(event_date):
@@ -15,7 +15,7 @@ def areIndividualDatesBeforeCurrentDate(individuals_dataframe, id_indices):
 
   #deaths
   is_alive = individuals_dataframe.loc[individuals_dataframe['id'] == id, 'alive'].iloc[0]
-  if is_alive == False:
+  if not is_alive:
     death_date = individuals_dataframe.loc[individuals_dataframe['id'] == id, 'death'].iloc[0]
     if isDateBeforeCurrentDate(datetime.strptime(death_date," %d %b %Y")) == False:
       print("ERROR: INDIVIDUAL: US01: " + str(id_indices[id]) + ": " + id + " Death" + death_date + " occurs in the future")

@@ -7,7 +7,7 @@ def no_marriages_to_descendants(individuals,families,family_id_indices):
         if husband_id in getDescendants(wife_id,individuals,families):
             print("ERROR: FAMILY: US17: Line Index # " + str(family_id_indices[row['id']]) + ": " + " Wife " + wife_id + " in Family " + row['id'] + " is married to their descendant!")
         if wife_id in getDescendants(husband_id,individuals,families):
-            print("ERROR: FAMILY: US17: Line Index # " + str(family_id_indices[row['id']]) + ": " + " Husband " + husband_id_id + " in Family " + row['id'] + " is married to their descendant!")
+            print("ERROR: FAMILY: US17: Line Index # " + str(family_id_indices[row['id']]) + ": " + " Husband " + husband_id + " in Family " + row['id'] + " is married to their descendant!")
 
 def getDescendants(person_id, individuals_dataframe, families_dataframe):
     descendants = []

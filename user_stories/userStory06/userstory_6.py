@@ -1,13 +1,9 @@
-#User Story 6
+# User Story 6
+
 from datetime import datetime
-from datetime import date
-import pandas as pd
-from dateutil.relativedelta import relativedelta
-import math
 
 def greaterDate(first_date, second_date):
     return datetime.strptime(first_date, " %d %b %Y") > datetime.strptime(second_date, " %d %b %Y")
-
 
 def divorceBeforeDeath(individuals, families):
     for index, row in families.iterrows():
