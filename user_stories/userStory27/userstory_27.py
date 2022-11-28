@@ -1,5 +1,4 @@
 import pandas as pd
-import parser
 import math
     
 def individual_ages(individuals_dataframe,id_indices):

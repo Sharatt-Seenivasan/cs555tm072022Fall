@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 
 def listOrphans(individuals, families):
@@ -13,7 +12,8 @@ def listOrphans(individuals, families):
 
 def hasDeadParents(child_id, individuals, families):
     for index, row in families.iterrows():
-        if row['children'] != 'nan' and (child_id in row['children']):
+        # row['children'] != 'nan' does not work because it can be a list, so to check if entry is not empty check if it's a list
+        if type(row['children']) is list and (child_id in row['children']):
             husband_id = row['Husband ID']
             wife_id = row['Wife ID']
             if not individuals[individuals['id']==husband_id].squeeze()['alive'] and not individuals[individuals['id']==wife_id].squeeze()['alive']:

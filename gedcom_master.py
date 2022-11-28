@@ -9,8 +9,6 @@ individuals = []
 individuals_id_and_name = []
 families = []
 filename = 'test_data.ged'
-#filename = 'Sprint3AcceptanceTest.ged'
-#filename = 'test_cases/userstory_24/userstory_24_testdata1.ged'
 
 allowed_tags = {
     0 : ['INDI','FAM','HEAD','TRLR','NOTE'],
