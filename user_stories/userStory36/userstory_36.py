@@ -5,16 +5,12 @@ from datetime import date
 import math
 
 def listRecentDeaths(individuals):
-    current= datetime.now()
-    recentdeathlist=[]
-    for index,row in individuals.iterrows():
-        if not type(row.death)==float or not math.isnan(row.death):
-            deathDay= datetime.strptime(row.death," %d %b %Y")
-            if (current.year - deathDay.year == 0 ):
-                if ((current - deathDay).days < 30):
-                    name=row["name"].strip("/")
-                    age=row["age"]
-                    deathdate= str(row["death"])
-                    recentdeathlist.append("US:36 List of recent deaths: "+name +" : "+ "age:"+str(age) +str(deathdate))
-    return recentdeathlist
-
+    today = datetime.today()
+    deathList = []
+    for index, row in individuals.iterrows():
+        if str(row['death']) != 'nan':
+            deathDate = datetime.strptime(row['death']," %d %b %Y")
+            if today.year == deathDate.year and (today-deathDate).days <= 30:
+                deathList.append((row['id'], row['age']))
+    print("US36: List of Recent Deaths:")
+    print(deathList)
