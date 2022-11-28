@@ -19,7 +19,8 @@ def large_age_difference(individuals, families):
                     wife_marriage_age = relativedelta(marriage_time, wife_birth_time).years
 
                     if husband_marriage_age >= (2 * wife_marriage_age) or wife_marriage_age >= (2 * husband_marriage_age):
-                        largelist.append("US:34 List of large age differences: Husband age " + str(husband_marriage_age) + " Wife age " + str(wife_marriage_age))
-
-    return largelist
-
+                        husband_age = individuals.loc[individuals['id'] == row['Husband ID'], 'age'].iloc[0]
+                        wife_age = individuals.loc[individuals['id'] == row['Wife ID'], 'age'].iloc[0]
+                        largelist.append("Husband ID: " + row['Husband ID'] + ", Husband age: " + str(husband_marriage_age) + ", Wife ID: " + row['Wife ID'] +  ", Wife age :" + str(wife_marriage_age))
+    print("US34: List of large age differences:")
+    print(largelist)
