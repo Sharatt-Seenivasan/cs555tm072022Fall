@@ -14,5 +14,6 @@ def listRecentBirths(individuals):
                 if ((current - birthday).days < 30):
                     name = row["name"].strip("/")
                     birthDate = str(row["birthday"])
-                    recentBirthsList.append("US:35 List of recent births: " + name + " " + str(birthDate))
-    return recentBirthsList
+                    recentBirthsList.append((row['id'],row['age']))
+    print("US35: List of recent births: ")
+    print(recentBirthsList)
