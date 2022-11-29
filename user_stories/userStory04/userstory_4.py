@@ -7,7 +7,7 @@ def marriage_before_divorce(families_dataframe, family_id_indices):
         if not type(row.married) == float and not type(row.divorced) == float:
             marr = row.married
             divv = row.divorced
-            if marr > divv:
+            if datetime.strptime(marr," %d %b %Y") > datetime.strptime(divv," %d %b %Y"):    
                 message = "ERROR: FAMILY: US04: " + str(family_id_indices[row.id]) +" :"+ row.id + ": Divorced date " + str(divv) + ", Before Marriage date " + str(marr) + " , therefore it is not valid."
                 print(message)       
                 
