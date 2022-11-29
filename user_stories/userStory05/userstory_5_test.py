@@ -1,6 +1,10 @@
-from userStory41 import *
+import os
+import sys
+import unittest
+from userStory_5 import *
 from unittest.mock import patch
-
+sys.path.append('')
+from gedcom_helper import file_parser, output_data
 
 class TestStringMethods(unittest.TestCase):
 
