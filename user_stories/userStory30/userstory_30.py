@@ -1,4 +1,4 @@
-import pandas as pd
+# User Story 30
 
 # List all living married people in a GEDCOM file
 # Bug: Does not check if person is divorced

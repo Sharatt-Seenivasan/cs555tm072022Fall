@@ -1,4 +1,5 @@
-import pandas as pd
+# User Story 12
+
 import math
     
 def parents_not_too_old(individuals,families,family_id_indices):
@@ -17,4 +18,3 @@ def parents_not_too_old(individuals,families,family_id_indices):
 #(individuals,individuals_id_and_name) = createIndDataframe("test_data.ged")
 #families = createFamilyDataframe("test_data.ged", individuals_id_and_name)
 #parents_not_too_old(individuals,families,getFamilyIndices("test_data.ged"))
-

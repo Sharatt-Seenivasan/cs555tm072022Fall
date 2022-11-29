@@ -13,9 +13,9 @@ def marriageBeforeDeath(individuals, families):
         wife_death = individuals.loc[individuals['id'] == row['Wife ID'], 'death'].iloc[0]
 
         if str(husband_death) != 'nan' and str(marriageDate) != 'nan':
-          if greaterDate(str(husband_death), str(marriageDate)) == False:
-              print("ERROR: US05: Input Line # " + str(row['index']) +": Husband " + row['Husband ID'] + " death date before marriage.")
+            if greaterDate(str(husband_death), str(marriageDate)) == False:
+                print("ERROR: US05: Input Line # " + str(row['index']) +": Husband " + row['Husband ID'] + " death date before marriage.")
 
         if str(wife_death) != 'nan' and str(marriageDate) != 'nan':
-          if greaterDate(str(wife_death), str(marriageDate)) == False:
-              print("ERROR: US05: Input Line # " + str(row['index']) +":Wife " + row['Wife ID'] + " death date before marriage.")
+            if greaterDate(str(wife_death), str(marriageDate)) == False:
+                print("ERROR: US05: Input Line # " + str(row['index']) +":Wife " + row['Wife ID'] + " death date before marriage.")

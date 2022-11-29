@@ -1,4 +1,5 @@
-import pandas
+# User Story 34
+
 from datetime import *
 from dateutil.relativedelta import *
 

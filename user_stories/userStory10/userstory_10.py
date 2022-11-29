@@ -1,6 +1,7 @@
-import pandas
-from datetime import *
-from dateutil.relativedelta import *
+# User Story 10
+
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 def marriage_after_14(individuals, families):
     legal_marriage_age = 14
@@ -11,15 +12,14 @@ def marriage_after_14(individuals, families):
             marriage_time = datetime.strptime(row['married'], " %d %b %Y")
 
             #error check if husband in individuals does not exist
-            if row['Husband ID'] in individuals['id'].values: 
+            if row['Husband ID'] in individuals['id'].values and row['Wife ID'] in individuals['id'].values: 
                 husband_birth = individuals.loc[individuals['id'] == row['Husband ID'], 'birthday'].iloc[0]
                 husband_birth_time = datetime.strptime(husband_birth, " %d %b %Y")
                 husband_marriage_age = relativedelta(marriage_time, husband_birth_time).years
 
-                if row['Wife ID'] in individuals['id'].values: 
-                    wife_birth = individuals.loc[individuals['id'] == row['Wife ID'], 'birthday'].iloc[0]
-                    wife_birth_time = datetime.strptime(wife_birth, " %d %b %Y")
-                    wife_marriage_age = relativedelta(marriage_time, wife_birth_time).years
+                wife_birth = individuals.loc[individuals['id'] == row['Wife ID'], 'birthday'].iloc[0]
+                wife_birth_time = datetime.strptime(wife_birth, " %d %b %Y")
+                wife_marriage_age = relativedelta(marriage_time, wife_birth_time).years
 
                 if husband_marriage_age < legal_marriage_age:
                     print("ERROR: FAMILY: US10: Input Line #" + str(row['index']) + ": "+ row['id'] + ": Husband (" + row['Husband ID'] + ") married before the age of 14")

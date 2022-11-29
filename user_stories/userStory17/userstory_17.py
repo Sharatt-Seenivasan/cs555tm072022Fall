@@ -1,4 +1,4 @@
-import pandas as pd
+# User Story 17
 
 def no_marriages_to_descendants(individuals,families,family_id_indices):
     for index, row in families.iterrows():
@@ -10,12 +10,8 @@ def no_marriages_to_descendants(individuals,families,family_id_indices):
             print("ERROR: FAMILY: US17: Line Index # " + str(family_id_indices[row['id']]) + ": " + " Husband " + husband_id + " in Family " + row['id'] + " is married to their descendant!")
 
 def getDescendants(person_id, individuals_dataframe, families_dataframe):
-    descendants = []
-    spouse_type = ''
-    if individuals_dataframe.loc[individuals_dataframe['id'] == person_id, 'gender'].iloc[0] == 'M':
-        spouse_type = 'Husband ID'
-    else:
-        spouse_type = 'Wife ID'
+    descendants, spouse_type = [], ''
+    spouse_type = 'Husband ID' if individuals_dataframe.loc[individuals_dataframe['id'] == person_id, 'gender'].iloc[0] == 'M' else 'Wife ID'
     for index, row in families_dataframe.iterrows():
         if row[spouse_type] == person_id:
             if str(row['children']) != 'nan':

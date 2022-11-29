@@ -1,3 +1,5 @@
+# User Story 18
+
 import pandas as pd
 
 def no_siblings_marriage(individuals, families):
@@ -26,3 +28,4 @@ def no_siblings_marriage(individuals, families):
 
         #if all_legal_marriages:
             #print("File has no sibling marriages.")
+        return all_legal_marriages

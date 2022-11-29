@@ -1,10 +1,8 @@
-import os
-import pandas as pd
+# User Story 32
 
 def listMultipleBirths(individuals):
     coveredBirthdays = []
     for index, row in individuals.iterrows():
-        birthdays = []
         if row['birthday'] not in coveredBirthdays:
             sameBirthdays = individuals[individuals['birthday'] == row['birthday']]
             coveredBirthdays.append(row['birthday'])

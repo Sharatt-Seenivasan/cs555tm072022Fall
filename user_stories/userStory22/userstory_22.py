@@ -1,4 +1,4 @@
-import pandas as pd
+# User Story 22
 
 # Sort the list of IDs and check for duplicates
 def check_id(id_list, indi_or_fam):

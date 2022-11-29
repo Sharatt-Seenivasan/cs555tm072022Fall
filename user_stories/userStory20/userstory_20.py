@@ -1,4 +1,4 @@
-import pandas as pd
+# User Story 20
 
 def no_newphew_niece_marriage(individuals, families):
     for index, row in families.iterrows():
@@ -11,7 +11,6 @@ def no_newphew_niece_marriage(individuals, families):
 
 def getNiblings(person_id, individuals_dataframe, families_dataframe):
     niblings = []
-    spouse_type = ''
     for index, row in families_dataframe.iterrows():
         if str(row['children']) != 'nan':
             if person_id in row['children']:

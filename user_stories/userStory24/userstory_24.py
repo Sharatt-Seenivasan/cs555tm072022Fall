@@ -1,10 +1,6 @@
-import pandas as pd
+# User Story 24
 
 def unique_families(families):
-    #families = pd.read_excel(io=filename, sheet_name='Families')
-    #temp = families.head(1)
-    #families = pd.concat([families, temp], ignore_index = True)
-    #families.iat[5,0] = 'F6'
     family_ids = families[['Husband ID', 'Wife ID']]
     check_duplicated = list(family_ids.duplicated())
 

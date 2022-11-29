@@ -1,4 +1,4 @@
-import pandas as pd
+# User Story 31
 
 # List all living people over 30 who have never been married in a GEDCOM file
 def list_living_single(individuals, families):

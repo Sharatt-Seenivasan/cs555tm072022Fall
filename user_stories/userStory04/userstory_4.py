@@ -1,7 +1,8 @@
-import pandas as pd
+# User Story 4
+
+from datetime import datetime
 
 def marriage_before_divorce(families_dataframe, family_id_indices):
-    error_type = "US04 Marriage before divorce"
     df2 = families_dataframe
     for row in df2.itertuples(index=False):
         if not type(row.married) == float and not type(row.divorced) == float:

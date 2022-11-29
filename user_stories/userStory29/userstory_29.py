@@ -1,4 +1,4 @@
-import pandas as pd 
+# User Story 29
 
 def getDeadPeople(individuals_dataframe):
     print("US29: List of dead people")

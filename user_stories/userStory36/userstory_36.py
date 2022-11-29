@@ -1,8 +1,6 @@
-import pandas as pd
+# User Story 36
+
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from datetime import date
-import math
 
 def listRecentDeaths(individuals):
     today = datetime.today()
